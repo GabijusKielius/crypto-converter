@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('currency_conversions', function (Blueprint $table) {
             $table->id();
 
+            $table->string('provider');
             $table->string('currency_money');
             $table->float('amount');
             $table->string('currency_crypto');

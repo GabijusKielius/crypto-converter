@@ -9,13 +9,18 @@ class CurrencyConversion extends Model
 {
     use HasFactory;
 
+    public const CURRENCY_EUR = 'EUR';
+    public const CURRENCY_USD = 'USD';
+    public const CURRENCY_PLN = 'PLN';
+
     public const AVAILABLE_MONEY_CURRENCIES = [
-        'EUR',
-        'USD',
-        'PLN'
+        self::CURRENCY_EUR,
+        self::CURRENCY_USD,
+        self::CURRENCY_PLN
     ];
 
     protected $fillable = [
+        'provider',
         'currency_money',
         'amount',
         'currency_crypto',

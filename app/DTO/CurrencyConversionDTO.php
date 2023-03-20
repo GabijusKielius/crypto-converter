@@ -13,6 +13,9 @@ class CurrencyConversionDTO
     /** @var string */
     private string $currencyCrypto;
 
+    /** @var float */
+    private float $amountCrypto;
+
     /**
      * @param float $amountMoney
      * @param string $currencyMoney
@@ -47,5 +50,22 @@ class CurrencyConversionDTO
     public function getCurrencyCrypto(): string
     {
         return $this->currencyCrypto;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAmountCrypto(): string
+    {
+        return $this->amountCrypto;
+    }
+
+    /**
+     * @param float $amount
+     * @return void
+     */
+    public function setAmountCrypto(float $amount): void
+    {
+        $this->amountCrypto = $amount;
     }
 }
