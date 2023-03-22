@@ -1,4 +1,5 @@
 <script>
+import ConversionDisplay from "@/Components/ConversionDisplay.vue";
 
 export default {
     data() {
@@ -8,13 +9,16 @@ export default {
             from_amount: '',
             from_currency: '',
             to_currency: '',
+            conversion: null,
         }
     },
+    components: {ConversionDisplay},
     methods: {
         fetchCrypto() {
             if (!this.isFormFilled) {
                 return;
             }
+            this.conversion = null;
             this.loading = true;
             const data = {
                 from_amount: this.from_amount,
@@ -37,17 +41,20 @@ export default {
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data);
                     this.message = null;
+                    this.conversion = data;
                 })
                 .catch(error => {
                     this.message = error;
+                })
+                .finally(() => {
+                    this.loading = false;
                 });
         }
     },
     computed: {
         isFormFilled() {
-            return this.amount !== '' && this.from !== '' && this.to !== '';
+            return this.from_amount !== '' && this.from_currency !== '' && this.to_currency !== '';
         }
     }
 }
@@ -88,5 +95,6 @@ export default {
         <div v-if="message">
             <p class="flex justify-center text-red-600">{{ message }}</p>
         </div>
+        <conversion-display :conversion="conversion"></conversion-display>
     </div>
 </template>
