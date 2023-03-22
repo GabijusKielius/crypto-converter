@@ -64,7 +64,7 @@ class CurrencyConversionTest extends TestCase
     /**
      * Tests if Coin API service returns correct responses
      *
-     * @return void
+     * @test
      * @throws Exception
      */
     public function test_coin_api_service_outcomes(): void
@@ -90,7 +90,7 @@ class CurrencyConversionTest extends TestCase
     /**
      * Tests if currency is converted successfully
      *
-     * @return void
+     * @test
      */
     public function test_convert_currency_returns_correct_result(): void
     {
@@ -106,7 +106,7 @@ class CurrencyConversionTest extends TestCase
     /**
      * Tests if correct fallback providers are returned
      *
-     * @return void
+     * @test
      */
     public function test_fallback_providers_return(): void
     {

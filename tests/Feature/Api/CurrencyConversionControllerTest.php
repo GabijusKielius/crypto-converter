@@ -15,7 +15,7 @@ class CurrencyConversionControllerTest extends TestCase
     /**
      * Tests a random combination of currencies and amounts
      *
-     * @return void
+     * @test
      */
     public function test_convert_random_currency(): void
     {
@@ -40,7 +40,7 @@ class CurrencyConversionControllerTest extends TestCase
     /**
      * Tests form request validation rules
      *
-     * @return void
+     * @test
      */
     public function testConvertCurrencyValidation(): void
     {
