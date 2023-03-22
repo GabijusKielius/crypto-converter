@@ -23,9 +23,9 @@ class CurrencyConversionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount'          => ['required', 'numeric'],
-            'currency_money'  => ['required', 'string', Rule::in(CurrencyConversion::AVAILABLE_MONEY_CURRENCIES)],
-            'currency_crypto' => ['required', 'string', 'max:10', 'alpha:ascii'],
+            'from_currency' => ['required', 'string', Rule::in(CurrencyConversion::AVAILABLE_MONEY_CURRENCIES)],
+            'from_amount'   => ['required', 'numeric'],
+            'to_currency'   => ['required', 'string', 'max:10', 'alpha:ascii'],
         ];
     }
 
@@ -37,9 +37,9 @@ class CurrencyConversionRequest extends FormRequest
         $data = $this->validated();
 
         return new CurrencyConversionDTO(
-            $data['amount'],
-            $data['currency_money'],
-            $data['currency_crypto'],
+            $data['from_currency'],
+            $data['from_amount'],
+            $data['to_currency'],
         );
     }
 }

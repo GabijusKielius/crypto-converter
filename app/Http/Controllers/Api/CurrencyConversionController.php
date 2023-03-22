@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CurrencyConversionRequest;
-use App\Services\CurrencyConversionService;
+use App\Services\CurrencyConversion\CurrencyConversionService;
 use Exception;
 use Illuminate\Http\JsonResponse;
 
@@ -30,6 +30,6 @@ class CurrencyConversionController extends Controller
      */
     public function store(CurrencyConversionRequest $conversionRequest): JsonResponse
     {
-        return response()->json($this->service->convertToCryptoCurrency($conversionRequest->toDTO()));
+        return response()->json($this->service->convertCurrency($conversionRequest->toDTO()));
     }
 }

@@ -20,10 +20,10 @@ class CurrencyConversion extends Model
     ];
 
     protected $fillable = [
+        'from_currency',
+        'from_amount',
+        'to_currency',
+        'to_amount',
         'provider',
-        'currency_money',
-        'amount',
-        'currency_crypto',
-        'amount_crypto'
     ];
 }

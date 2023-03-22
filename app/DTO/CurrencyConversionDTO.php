@@ -4,68 +4,69 @@ namespace App\DTO;
 
 class CurrencyConversionDTO
 {
-    /** @var float */
-    private float $amountMoney;
-
     /** @var string */
-    private string $currencyMoney;
-
-    /** @var string */
-    private string $currencyCrypto;
+    private string $fromCurrency;
 
     /** @var float */
-    private float $amountCrypto;
+    private float $fromAmount;
+
+    /** @var string */
+    private string $toCurrency;
+
+    /** @var float|null */
+    private ?float $toAmount;
 
     /**
-     * @param float $amountMoney
-     * @param string $currencyMoney
-     * @param string $currencyCrypto
+     * @param string $fromCurrency
+     * @param float $fromAmount
+     * @param string $toCurrency
      */
-    public function __construct(float $amountMoney, string $currencyMoney, string $currencyCrypto)
+    public function __construct(string $fromCurrency, float $fromAmount, string $toCurrency)
     {
-        $this->amountMoney    = $amountMoney;
-        $this->currencyMoney  = $currencyMoney;
-        $this->currencyCrypto = $currencyCrypto;
+        $this->fromCurrency = $fromCurrency;
+        $this->fromAmount = $fromAmount;
+        $this->toCurrency = $toCurrency;
+        $this->toAmount = null;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFromCurrency(): string
+    {
+        return $this->fromCurrency;
     }
 
     /**
      * @return float
      */
-    public function getAmountMoney(): float
+    public function getFromAmount(): float
     {
-        return $this->amountMoney;
+        return $this->fromAmount;
     }
 
     /**
      * @return string
      */
-    public function getCurrencyMoney(): string
+    public function getToCurrency(): string
     {
-        return $this->currencyMoney;
+        return $this->toCurrency;
     }
 
     /**
-     * @return string
+     * @return float|null
      */
-    public function getCurrencyCrypto(): string
+    public function getToAmount(): ?float
     {
-        return $this->currencyCrypto;
+        return $this->toAmount;
     }
 
     /**
-     * @return string
-     */
-    public function getAmountCrypto(): string
-    {
-        return $this->amountCrypto;
-    }
-
-    /**
-     * @param float $amount
+     * @param float $toAmount
      * @return void
      */
-    public function setAmountCrypto(float $amount): void
+    public function setToAmount(float $toAmount): void
     {
-        $this->amountCrypto = $amount;
+        $this->toAmount = $toAmount;
     }
 }

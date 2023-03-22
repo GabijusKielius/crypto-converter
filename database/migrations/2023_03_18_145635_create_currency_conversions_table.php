@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('currency_conversions', function (Blueprint $table) {
             $table->id();
 
-            $table->string('provider');
-            $table->string('currency_money');
-            $table->float('amount');
-            $table->string('currency_crypto');
-            $table->float('amount_crypto');
+            $table->string('from_currency');
+            $table->float('from_amount');
+            $table->string('to_currency');
+            $table->float('to_amount');
+            $table->string('api_provider');
 
             $table->timestamps();
         });
