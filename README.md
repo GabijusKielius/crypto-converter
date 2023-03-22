@@ -1,66 +1,61 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## About Crypto Converter
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Crypto Converter is a web application, which allows users to easily convert currencies via publically available APIs. User input is automatically saved into database.
 
-## About Laravel
+## Requirements
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+These are the technologies used for project development
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- PHP ^8.2
+- Laravel ^10.0
+- Vue ^3.2.41
+- Node ^v18.15.0
+- Docker ^20.10.23
+- NPM ^9.5.0
+- Composer ^2.5.4
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Launching Development
 
-## Learning Laravel
+Project is using [Laravel Sail](https://laravel.com/docs/10.x/sail). You may use different services or Docker directly, but for clarity sake all commands will use Sail in mind
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+After cloning repository, run the following steps:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- Install composer dependancies - `composer install`
+- Install Node dependancies - `npm install`
+- Create .env - `cp .env.example .env`
+- _(Optional)_ Acquire [Coin API](https://docs.coinapi.io/) free API key, add it to `.env` variable `COIN_API_KEY`
+- Build docker container images - `./vendor/bin/sail build` - if needed, use `--no-cache` flag
+- Start docker container - `./vendor/bin/sail up`
+- Run migrations - `./vendor/bin/sail php artisan migrate`
+- Start the development server - `npm run dev`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Usage
 
-## Laravel Sponsors
+Project acts as both SPA and API application:
+1. You can open [localhost](http://localhost) with your preferred browser
+2. Alternatively, you can use [Postman](https://www.postman.com/), cURL or similar services to call API endpoint
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## API Endpoint
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Currency Conversion endpoint is `http://localhost/api/currency/convert` (POST), the body example goes as follows:
+```
+{
+    "from_amount":123,
+    "from_currency":"EUR",
+    "to_currency":"BTC"
+}
+```
+If successful, the response will go as follows:
+```
+{
+    "from_currency": "EUR",
+    "from_amount": 123,
+    "to_currency": "BTC",
+    "to_amount": 0.004677,
+    "api_provider": "Exchange Rate",
+    "updated_at": "2023-03-22T13:20:42.000000Z",
+    "created_at": "2023-03-22T13:20:42.000000Z",
+    "id": 7
+}
+```
+While feature is called `crypto` converter and it should be used for this purpose, it can be used to convert currencies to other real-life currencies.
