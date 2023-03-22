@@ -5,12 +5,7 @@ export default {
     props: {
         conversion: {}
     },
-    components: {Loader},
-    data(){
-        return {
-            isLoading: true
-        }
-    }
+    components: {Loader}
 }
 
 </script>
