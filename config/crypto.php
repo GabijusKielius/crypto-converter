@@ -4,7 +4,7 @@ return [
     'providers' => [
         'coin_api' => [
             'name' => 'Coin API',
-            'url'  => env('COIN_API_URL', 'https://rest.coinapi.io/v1/exchangerate/'),
+            'url'  => env('COIN_API_URL', 'https://rest.coinapi.io/v1/exchangerate'),
             'key'  => env('COIN_API_KEY', '')
         ],
         'exchange_rate' => [

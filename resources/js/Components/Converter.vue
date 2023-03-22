@@ -5,9 +5,9 @@ export default {
         return {
             loading: false,
             message: null,
-            amount: '',
-            currencyMoney: '',
-            currencyCrypto: '',
+            from_amount: '',
+            from_currency: '',
+            to_currency: '',
         }
     },
     methods: {
@@ -17,9 +17,9 @@ export default {
             }
             this.loading = true;
             const data = {
-                amount: this.amount,
-                currency_money: this.currencyMoney,
-                currency_crypto: this.currencyCrypto
+                from_amount: this.from_amount,
+                from_currency: this.from_currency,
+                to_currency: this.to_currency
             };
 
             fetch("/api/currency/convert", {
@@ -47,7 +47,7 @@ export default {
     },
     computed: {
         isFormFilled() {
-            return this.amount !== '' && this.currencyMoney !== '' && this.currencyCrypto !== '';
+            return this.amount !== '' && this.from !== '' && this.to !== '';
         }
     }
 }
@@ -59,11 +59,11 @@ export default {
         <div class="grid md:grid-cols-3 gap-6" @keydown.enter="fetchCrypto">
             <div class="p-6 dark:bg-gray-800/50 dark:ring-1 dark:ring-inset rounded-lg shadow-2xl">
                 <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Amount</h2>
-                <input class="rounded-lg mt-3 p-2" v-model="amount" placeholder="Enter amount" type="number"/>
+                <input class="rounded-lg mt-3 p-2" v-model="from_amount" placeholder="Enter amount" type="number"/>
             </div>
             <div class="p-6 dark:bg-gray-800/50 dark:ring-1 dark:ring-inset rounded-lg shadow-2xl">
                 <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Currency</h2>
-                <select class="rounded-lg mt-3" v-model="currencyMoney">
+                <select class="rounded-lg mt-3" v-model="from_currency">
                     <option disabled value="">Please select currency</option>
                     <option>EUR</option>
                     <option>USD</option>
@@ -72,7 +72,7 @@ export default {
             </div>
             <div class="p-6 dark:bg-gray-800/50 dark:ring-1 dark:ring-inset rounded-lg shadow-2xl">
                 <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Crypto Currency</h2>
-                <input class="rounded-lg mt-3 p-2" v-model="currencyCrypto" placeholder="Enter currency" />
+                <input class="rounded-lg mt-3 p-2" v-model="to_currency" placeholder="Enter currency" />
             </div>
         </div>
         <div class="mt-5 flex justify-center">
